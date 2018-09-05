@@ -1,0 +1,23 @@
+{
+    "language": "ja-JP",
+    "botId": "Chatting",
+    "appId": "8667ad4d-c6b0-447c-92a8-486a41f6551a",
+    "voiceText": "今日は永続化してくださいまして映像化してくださいよ",
+    "clientData": {
+        "option": {
+            "nickname": "たいちょう",
+            "nicknameY": "taicho",
+            "sex": "男",
+            "bloodtype": "O",
+            "birthdateY": "1997",
+            "birthdateM": "12",
+            "birthdateD": "22",
+            "age": "20",
+            "constellations": "山羊座",
+            "place": "東京",
+            "mode": "dialog"
+        }
+    },
+    "appRecvTime": "2018-09-06 05:44:00",
+    "appSendTime": "2018-09-06 05:45:00"
+}

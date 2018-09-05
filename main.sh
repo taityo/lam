@@ -1,4 +1,6 @@
 
 sh s2t.sh
 
-sh t2s.sh
+#sh chatbot.sh
+
+#sh t2s.sh

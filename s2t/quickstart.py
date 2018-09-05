@@ -29,7 +29,7 @@ config = types.RecognitionConfig(
 response = client.recognize(config, audio)
 
 import json
-f = open('t2s/synthesize-input.json', 'r')
+f = open('chatbot/chat/request.json', 'r')
 dict = json.load(f)
 res = ''
 
@@ -41,6 +41,6 @@ for result in response.results:
     res = res + text 
 
 print(res)
-dict["input"]["text"] = res 
-f = open('t2s/synthesize-input.json', 'w')
+dict["voiceText"] = res 
+f = open('chatbot/chat/request.json', 'w')
 json.dump(dict,f,indent=4,ensure_ascii=False)
