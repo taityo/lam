@@ -1,3 +1,8 @@
 
+#chatbot process
+sh chatbot/chat.sh > chatbot/bot_word.json
 
-sh chatbot/chat.sh
+
+#written json file
+python chatbot/write-json.py $BOT_WORD
+

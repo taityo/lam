@@ -5,7 +5,7 @@
         "speakingRate": "1.00"
     },
     "input": {
-        "text": "こんにちはおはようさようならおやすみなさい"
+        "text": "楽しそうですね！"
     },
     "voice": {
         "languageCode": "ja-JP",
