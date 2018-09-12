@@ -81,25 +81,38 @@ class MicrophoneStream(object):
 
 
 def get_conv_loop(responses):
+    num_chars_printed = 0
     for response in responses:
         if not response.results:
             continue
 
         result = response.results[0]
+        # print("result:", result)
         if not result.alternatives:
             continue
 
         transcript = result.alternatives[0].transcript
-        #print("transcript:", transcript)
+        # print("transcript:", transcript)
+
+        overwrite_chars = ' ' * (num_chars_printed - len(transcript))
+        #print(overwite_chars)
+
+        # 話終わっていなかったら、つなげて出力する。
+        if not result.is_final:
+            sys.stdout.write(transcript + overwrite_chars + '\r')
+            sys.stdout.flush()
+
+            num_chars_printed = len(transcript)
 
         # 話終わっていたら、改行して出力する。
-        if result.is_final:
-            #print(transcript)
+        else:
+            print(transcript + overwrite_chars)
 
             if re.search(r'\b(exit|quit)\b', transcript, re.I):
                 print('Exiting..')
                 break
 
+            num_chars_printed = 0
             return transcript
 
 

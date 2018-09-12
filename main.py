@@ -1,9 +1,10 @@
 import subprocess
 import sys
 from start import start
+from s2t import s2t
 
 def piece_of_conversation():
-  subprocess.call(["sh",  "s2t.sh"])
+  s2t.write_conv("chatbot/chat/request.json")
   subprocess.call(["sh",  "chatbot.sh"])
   subprocess.call(["sh",  "t2s.sh"])
 
