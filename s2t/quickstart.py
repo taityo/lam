@@ -6,41 +6,49 @@ from google.cloud import speech
 from google.cloud.speech import enums
 from google.cloud.speech import types
 
-# Instantiates a client
-client = speech.SpeechClient()
+def s2t():
 
-# The name of the audio file to transcribe
-file_name = os.path.join(
-    os.path.dirname(__file__),
-    'resources',
-    'test.wav')
+    # Instantiates a client
+    client = speech.SpeechClient()
 
-# Loads the audio into memory
-with io.open(file_name, 'rb') as audio_file:
-    content = audio_file.read()
-    audio = types.RecognitionAudio(content=content)
+    # The name of the audio file to transcribe
+    file_name = os.path.join(
+        os.path.dirname(__file__),
+        'resources',
+        'test.wav')
 
-config = types.RecognitionConfig(
-    encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
-    sample_rate_hertz=16000,
-    language_code='ja-JP')
+    # Loads the audio into memory
+    with io.open(file_name, 'rb') as audio_file:
+        content = audio_file.read()
+        audio = types.RecognitionAudio(content=content)
 
-# Detects speech in the audio file
-response = client.recognize(config, audio)
+    config = types.RecognitionConfig(
+        encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+        sample_rate_hertz=16000,
+        language_code='ja-JP')
 
-import json
-f = open('chatbot/chat/request.json', 'r')
-dict = json.load(f)
-res = ''
+    # Detects speech in the audio file
+    response = client.recognize(config, audio)
 
-for result in response.results:
-    text = result.alternatives[0].transcript
-    print('Transcript: {}'.format(text))
-    #print(result.alternatives[0].transcript)
+    import json
+    f = open('chatbot/chat/request.json', 'r')
+    dict = json.load(f)
+    res = ''
+
+    for result in response.results:
+        text = result.alternatives[0].transcript
+        print('Transcript: {}'.format(text))
+        #print(result.alternatives[0].transcript)
     
-    res = res + text 
+        res = res + text 
 
-print(res)
-dict["voiceText"] = res 
-f = open('chatbot/chat/request.json', 'w')
-json.dump(dict,f,indent=4,ensure_ascii=False)
+    if res.find('おやすみ') > -1:
+        return 0
+
+    print(res)
+    dict["voiceText"] = res 
+    f = open('chatbot/chat/request.json', 'w')
+    json.dump(dict,f,indent=4,ensure_ascii=False)
+
+
+s2t()
