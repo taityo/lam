@@ -8,7 +8,7 @@ def write_conv(json_file):
   word = stream_s2t.get_conv()
 
   if word != None:
-    print("Write word '"+ word + "'")
+    #print("Write word '"+ word + "'")
     dict["voiceText"] = word
     f = open(json_file, 'w')
     json.dump(dict,f,indent=4,ensure_ascii=False)
