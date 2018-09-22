@@ -9,6 +9,5 @@ python t2s/audio-pickup.py > t2s/resources/synthesize-output-base64.txt
 base64 t2s/resources/synthesize-output-base64.txt --decode > t2s/resources/synthetic-audio.mp3
 sox t2s/resources/synthetic-audio.mp3 t2s/resources/synthetic-audio.wav
 
-
 aplay t2s/resources/synthetic-audio.wav
 
